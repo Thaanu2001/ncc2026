@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Node.js MySQL Demo",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.19.2",
     "mysql2": "^3.11.0"
