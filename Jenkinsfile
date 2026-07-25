@@ -21,7 +21,7 @@ pipeline {
         stage('2. Build Docker Images') {
             steps {
                 script {
-                    bat 'docker build -t ${DOCKERHUB_REPO}:latest ./app'
+                    bat "docker build -t %DOCKERHUB_REPO%:latest -f app\\Dockerfile app"
                 }
             }
         }
@@ -41,7 +41,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: "${env.DOCKERHUB_CREDENTIALS}", usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                         bat 'docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%'
-                        bat 'docker push ${DOCKERHUB_REPO}:latest'
+                        bat 'docker push %DOCKERHUB_REPO%:latest'
                     }
                 }
             }
